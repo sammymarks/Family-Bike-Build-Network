@@ -4,9 +4,16 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-//-------Imports - Controllers-------
+//-------Imports-------
+//Schemas
+const { Bike, Trailer, Seat, Rack, Storage, Accessory, Build, User} = require(`./models/index.js`)
+//Controllers
+const userController = require("./controllers/UserControllers")
+const buildController = require('./controllers/BuildControllers')
+const bikeController = require('./controllers/PartsControllers/BikeControllers')
+const accessoryController = require('./controllers/PartsControllers/AccessoryControllers')
 
-//-------END Imports - Controllers -------
+//-------END Imports -------
 
 const PORT = process.env.PORT || 3001;
 
@@ -21,6 +28,11 @@ app.use(cors());
 //-------CRUD-------
 //Index
 app.get("/", (req, res) => res.send("This is Index"));
+
+//Users
+app.get("/users", userController.getAll);
+app.get("/users/:id", userController.getByID);
+
 
 
 //-------ENDCRUD-------
