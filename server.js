@@ -12,6 +12,14 @@ const userController = require("./controllers/UserControllers")
 const buildController = require('./controllers/BuildControllers')
 const bikeController = require('./controllers/PartsControllers/BikeControllers')
 const accessoryController = require('./controllers/PartsControllers/AccessoryControllers')
+const rackController = require('./controllers/PartsControllers/RackControllers')
+const seatController = require('./controllers/PartsControllers/SeatControllers')
+const trailerController = require('./controllers/PartsControllers/TrailerControllers')
+const storageController = require('./controllers/PartsControllers/StorageControllers')
+
+
+
+
 
 //-------END Imports -------
 
@@ -33,7 +41,33 @@ app.get("/", (req, res) => res.send("This is Index"));
 app.get("/users", userController.getAll);
 app.get("/users/:id", userController.getByID);
 
+//Builds
+app.get("/builds", buildController.getAll);
+app.get("/builds/:id", buildController.getByID);
 
+//Bikes
+app.get("/bikes", bikeController.getAll);
+app.get("/bikes/:id", bikeController.getByID);
+
+//Racks
+app.get("/racks", rackController.getAll);
+app.get("/racks/:id", rackController.getByID);
+
+//Seats
+app.get("/seats", seatController.getAll);
+app.get("/seats/:id", seatController.getByID);
+
+//Storage
+app.get("/storages", storageController.getAll);
+app.get("/storages/:id", storageController.getByID);
+
+//Trailer
+app.get("/trailers", trailerController.getAll);
+app.get("/trailers/:id", trailerController.getByID);
+
+//Accessories
+app.get("/accessories", accessoryController.getAll);
+app.get("/accessories/:id", accessoryController.getByID);
 
 //-------ENDCRUD-------
 //listening

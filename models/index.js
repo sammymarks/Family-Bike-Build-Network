@@ -1,24 +1,24 @@
 const mongoose = require('mongoose')
 
 //Import Parts
-const bikeSchema = require('./parts/bikes')
-const trailerSchema = require('./parts/trailers')
-const seatSchema = require('./parts/seats')
-const rackSchema = require('./parts/racks')
-const storageSchema = require('./parts/storages')
-const accessorySchema = require('./parts/accessories')
-const buildSchema = require('./builds')
-const userSchema = require('./users')
+const { TrailerSchema } = require('./parts/trailer')
+const { SeatSchema } = require('./parts/seat')
+const { RackSchema } = require('./parts/rack')
+const { StorageSchema } = require('./parts/storage')
+const { AccessorySchema }= require('./parts/accessory')
+const BuildSchema = require('./build')
+const UserSchema = require('./user')
+const { BikeSchema } = require('./parts/bike')
 
 //Define Schema
-const Bike = mongoose.model('bikes', bikeSchema)
-const Trailer = mongoose.model('trailers', trailerSchema)
-const Seat = mongoose.model('seats', seatSchema)
-const Rack = mongoose.model('racks', rackSchema)
-const Storage = mongoose.model('storages', storageSchema)
-const Accessory = mongoose.model('accessories', accessorySchema)
-const Build = mongoose.model('builds', buildSchema)
-const User = mongoose.model('users', userSchema)
+const Bike = mongoose.model('bike', BikeSchema)
+const Trailer = mongoose.model('trailers', TrailerSchema)
+const Seat = mongoose.model('seats', SeatSchema)
+const Rack = mongoose.model('racks', RackSchema)
+const Storage = mongoose.model('storages', StorageSchema)
+const Accessory = mongoose.model('accessories', AccessorySchema)
+const Build = mongoose.model('build', BuildSchema)
+const User = mongoose.model('user', UserSchema)
 
 //Export
 module.exports = {

@@ -15,6 +15,4 @@ const BuildSchema = new Schema(
     { timestamps: true }
 )
 
-module.exports = {
-    BuildSchema,
-  };
+module.exports = BuildSchema

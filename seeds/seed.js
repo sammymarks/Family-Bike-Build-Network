@@ -1,40 +1,30 @@
 const db = require('../db/index')
 
-const { 
-    Bike, 
-    Trailer,
-    Seat,
-    Rack,
-    Storage,
-    Accessory,
-    Build,
-    User
-} = require(`../models/index.js`)
+const { Bike, Trailer, Seat, Rack, Storage, Accessory, Build, User} = require(`../models/index.js`)
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+console.log("DB On")
+
 
 const main = async () => {
-    console.log("running main")
+
     //USER
-    const adminUser = await new User({
+    const adminUser = await  User.create({
         userName: "Sammy Admin",
         location: "Chicago, IL",
         profilePic: "https://i.imgur.com/9QVCcKL.jpg",
         isAdmin: true,
     })
-    adminUser.save()
 
-    const standardUser = await new User({
+    const standardUser = await User.create({
         userName: "Fiona Hippo",
         location: "Chicago, IL",
         profilePic: "https://cincinnatizoo.org/system/assets/uploads/2023/01/52360823791_2a357cfab6_b.jpg",
         isAdmin: false,
-    })
-    standardUser.save
-    
+    })    
     
     //BIKE
-    const UAFamily = await new Bike({
+    const UAFamily = await Bike.create({
         brand: "Urban Arrow",
         model: "Family",
         isElectricAssist: true,
@@ -47,9 +37,8 @@ const main = async () => {
         addedByUser: adminUser._id,
         likedByUsers: [adminUser._id, standardUser._id],
     })
-    UAFamily.save()
     
-    const konaRoveST = await new Bike({
+    const konaRoveST = await  Bike.create({
         brand: "Kona",
         model: "Rove ST",
         isElectricAssist: false,
@@ -62,11 +51,10 @@ const main = async () => {
         addedByUser: adminUser._id,
         likedByUsers: [standardUser._id],
     })
-    konaRoveST.save()
 
-    //Accessory
+    //ACCESSORY
     
-    const niteRiderFontLight = await new Accessory({
+    const niteRiderFontLight = await Accessory.create({
         brand: "Nite Rider",
         model: "Lumina 1200",
         type: "Light",
@@ -76,9 +64,8 @@ const main = async () => {
         addedByUser: adminUser._id,
         likedByUsers: [adminUser._id, standardUser._id],
     })
-    niteRiderFontLight.save()
 
-    const kryptoniteFahgettabouditMini = await new Accessory({
+    const kryptoniteFahgettabouditMini = await Accessory.create({
         brand: "Kryptonite",
         model: "NEW YORK FAHGETTABOUDIT MINI",
         type: "Lock",
@@ -88,18 +75,125 @@ const main = async () => {
         addedByUser: standardUser._id,
         likedByUsers: [adminUser._id],
     })
-    kryptoniteFahgettabouditMini.save()
 
-    
+    //TRAILER
+    const BurleyEncoreX = await Trailer.create({
+        brand: "Burley",
+        model: "Encore X",
+        category: "Kid",
+        passengerCount: 2,
+        urlProduct: "https://burley.com/products/encore-x",
+        urlPic: "https://burley.com/cdn/shop/files/1EncoreX-MAINwithPCRFBadge_300x.jpg?v=1684973738",
+        isStroller: true,
+        otherNotes: "All the convenience of the Burley hitch system. Seats fold down for use as a Cargo trailer. Burley-branded through-axle sold separately.",
+        addedByUser: adminUser._id,
+    })
 
+    const WehooiGoTwo = await Trailer.create({
+        brand: "Wehoo",
+        model: "iGo Two",
+        category: "Kid",
+        passengerCount: 2,
+        urlProduct: "https://www.amazon.com/Weehoo-K1020-2-Bike-Trailer/dp/B00S72SX9I/ref=cm_cr_arp_d_product_top?ie=UTF8",
+        urlPic: "https://m.media-amazon.com/images/I/51JlrsLToeL._AC_SL1000_.jpg",
+        isStroller: false,
+        otherNotes: "Narrower than traditional trailers, great for older kids. Seatpost mounted.",
+        addedByUser: standardUser,
+    })
 
+    //SEAT
+
+    const ShotgunKidsMTB = await Seat.create({
+        brand: "Kids Ride Shotgun",
+        model: "Mountain Bike Seat Combo",
+        mountingType: "Frame",
+        locationOnBike: "Other",
+        urlProduct: "https://kidsrideshotgun.com/collections/products/products/shotgun-kids-mtb-seat-combo",
+        urlPic: "https://kidsrideshotgun.com/cdn/shop/products/kids-ride-shotgun-child-bike-seat-on-bike_1296x.jpg?v=1630396560",
+        otherNotes: "Optimized for mountain bikes that don't carry racks or tow trailers. Older kids only - there is no harness!",
+        addedByUser: standardUser._id,
+        likedByUsers: standardUser._id,
+    })
+
+    const ThuleYeppMini = await Seat.create({
+        brand: "Thule",
+        model: "Yepp Mini",
+        mountingType: "Handlebar",
+        locationOnBike: "Front",
+        urlProduct: "https://www.thule.com/en-us/child-bike-seats/front-mounted-child-bike-seats/thule-yepp-mini-_-12020102",
+        urlPic: "https://www.thule.com/-/p/EcwJ6DvyfylibN311FB92gGV0J2WZBG_cHhGQ6desmE/rs:fit/f:avif/cb:1.4/q:80/h:991/w:991/plain/approved/std.lang.all/33/78/1383378.png",
+        otherNotes: "Not compatible with all bikes - requires a long stem. See product specs. Can be easily removed from the low-profile bracket.",
+        addedByUser: adminUser._id,
+        likedByUsers: adminUser._id,
+    })
+
+    //RACK
+    const YubaMonkeyBars = await Rack.create({
+        brand: "Yuba",
+        model: "Monkey Bars",
+        locationOnBike: "Rear",
+        urlProduct: "https://yubabikes.com/cargobikestore/yuba-monkey-bars/",
+        otherNotes: "Only used for Yuba cargo bikes",
+        addedByUser: standardUser._id,
+    })
+
+    const TopeakExplorerDisc = await Rack.create({
+        brand: "Topeak",
+        model: "Explorer Disc (No Spring)",
+        locationOnBike: "Rear",
+        maxWeightLB: 57,
+        urlProduct: "https://www.topeak.com/us/en/product/1531-EXPLORER-(DISC)-(W-O-SPRING)",
+        urlPic: "https://d38pflz5lto8bg.cloudfront.net/storage/app/media/product/racks/explorer/2022/TA2135B_main_2307.png",
+        otherNotes: "Only used for Yuba cargo bikes",
+        addedByUser: standardUser._id,
+        likedByUsers: adminUser._id,
+    })
+
+    //STORAGE
+    const OrtleibBackRoller = await Storage.create({
+        brand: "Ortleib",
+        model: "Back Roller Classic",
+        mountingType: "Rack",
+        volumeLiters: 40,
+        urlProduct: "https://www.ortlieb.com/en_us/back-roller-classic+F5301",
+        urlPic: "https://www.ortlieb.com/media/catalog/product/cache/08feb11c79a0bb9a6da085a0189fa580/b/a/back-roller-classic_f5301_pair_1.jpg",
+        otherNotes: "Comes in pairs. Absolute workhorse, from touring to grocery runs.",
+        addedByUser: standardUser._id,
+        likedByUsers: adminUser._id,
+    })
+
+    const YubaGoGetterBag = await Storage.create({
+        brand: "Yuba",
+        model: "Go-Getter Bag",
+        mountingType: "Frame",
+        volumeLiters: 80,
+        urlProduct: "https://yubabikes.com/cargobikestore/go-getter-bag/",
+        urlPic: "https://eadn-wc04-3021648.nxedge.io/cdn/pub/media/catalog/product/cache/ce6ea614a7d577118de51f685d76082e/G/o/Go-Getter_Bag_for_all_Mundo_El_Mundo_Bikes_1.jpg",
+        otherNotes: "Only use for Yuba bikes",
+        addedByUser: standardUser._id,
+        likedByUsers: adminUser._id,
+    })
+
+    //BUILDS
+    const adminBuild = await Build.create({
+        ownerUser: adminUser._id,
+        buildPic: "https://talesofamountainmama.com/wp-content/uploads/2019/05/IMG_7052.jpg.webp",
+        bikeObj: konaRoveST._id,
+        trailerObjs: BurleyEncoreX._id,
+        rackObjs: TopeakExplorerDisc._id,
+        storageObjs: OrtleibBackRoller._id,
+        accessoryObjs: [niteRiderFontLight._id, kryptoniteFahgettabouditMini._id],
+        likedByUsers: standardUser._id,
+    })
 }
 
-seedConfig = async () => {
-    // db.dropDatabase()
+seedAll = async () => {
+    await db.dropDatabase()
+    console.log("droppedDB")
     await main()
     console.log("completed main")
-    // db.close()
+    await db.close()
+    console.log("closed db")
 }
 
-seedConfig()
+seedAll()

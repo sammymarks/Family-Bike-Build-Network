@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, default: mongoose } = require("mongoose");
 
 const UserSchema = new Schema(
     {
@@ -6,7 +6,7 @@ const UserSchema = new Schema(
         location: { type: String, required: true },
         profilePic: { type: String, required: false },
         isAdmin: { type: Boolean, required: true },
-        buildCartBike: { type: Schema.Types.ObjectId, ref: 'Bike', required: false },
+        buildCartBikes: [{ type: Schema.Types.ObjectId, ref: 'Bike', required: false }],
         buildCartAccessories: [{ type: Schema.Types.ObjectId, ref: 'Accessory', required: false }],
         buildCartRacks: [{ type: Schema.Types.ObjectId, ref: 'Rack', required: false }],
         buildCartStorages: [{ type: Schema.Types.ObjectId, ref: 'Storage', required: false }],
@@ -16,6 +16,6 @@ const UserSchema = new Schema(
     { timestamps: true }
 )
 
-module.exports = {
-    UserSchema,
-    };
+module.exports = UserSchema
+
+// module.exports = mongoose.model("User", UserSchema)

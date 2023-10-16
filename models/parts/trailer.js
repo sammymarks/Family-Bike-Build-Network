@@ -17,5 +17,5 @@ const TrailerSchema = new Schema(
 )
 
 module.exports = {
-    TrailerSchema,
+    TrailerSchema
   };

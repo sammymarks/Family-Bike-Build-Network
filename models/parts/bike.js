@@ -1,13 +1,15 @@
 const { Schema } = require("mongoose");
 
-const StorageSchema = new Schema(
+const BikeSchema = new Schema(
     {
         brand: { type: String, required: true },
         model: { type: String, required: true },
-        mountingType: { type: String, required: true },
-        volumeLiters: { type: String, required: true },
+        isElectricAssist: { type: Boolean, required: true },
+        category: { type: String, required: true },
+        year: { type: Number, required: false },
         urlProduct: { type: String, required: false },
         urlPic: { type: String, required: false },
+        frameMaterials: { type: String, required: false },
         otherNotes: { type: String, required: false },
         addedByUser: { type: Schema.Types.ObjectId, ref: 'User', required: false },
         likedByUsers: [{ type: Schema.Types.ObjectId, ref: 'User', required: false }],
@@ -15,6 +17,4 @@ const StorageSchema = new Schema(
       { timestamps: true }
 )
 
-module.exports = {
-    StorageSchema,
-  };
+module.exports = { BikeSchema }
