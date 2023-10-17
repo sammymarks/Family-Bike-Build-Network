@@ -7,70 +7,13 @@ let rackDBData = new Array()
 let seatDBData = new Array()
 let storageDBData = new Array()
 let trailerDBData = new Array()
-let currentUser = Object()
+let currentUser = new Object()
+let heartBtns
+let addToBuildBtns
 
 //Functions
 
-const renderCollection = (collectionDBData) => {
-    let collectionName = collectionDBData.shift()
-    // console.log(collectionDBData)
-    
-    collectionDBData.forEach(doc => {
-        let brand = doc.brand
-        let model = doc.model
-        let urlPic = doc.urlPic
-        let id = doc._id
-        let likePic = new String()
-        if (doc.likedByUsers.includes(doc.addedByUser)) {
-            likePic = `../../assets/Heart_icon_red_filled.png`
-        } else {
-            likePic = `../../assets/Heart_icon_red_hollow.png`
-        }
-        let likeCount = doc.likedByUsers.length
-        // console.log(brand, model, urlPic, likePic, likeCount)        
-
-        let htmlString = `<div class="part-item" id="${collectionName}">
-        <div class="part-sub-item" id="collection">~${collectionName}~</div>
-        <div class="part-sub-item" id="brand">${brand}</div>
-        <div class="part-sub-item" id="model">${model}</div>
-        <div class="part-sub-item" id="picture">
-            <img src="${urlPic}">
-        </div>
-        <div class="part-sub-item" id="like">
-            <img src="${likePic}">
-            <div id="part-like-counter">${likeCount}</div>
-        </div>
-        <div class="part-sub-item" id="add-to-cart">
-                <a href="#">Add to Build Cart</a>
-        </div>
-        </div>`
-
-
-        let partViewer = document.querySelector('#parts-results')
-        // console.log(partViewer)
-
-        partViewer.innerHTML += htmlString
-    });
-}
-
-const renderAllParts = () => {
-    renderCollection(bikeDBData)
-    renderCollection(seatDBData)
-    renderCollection(trailerDBData)
-    renderCollection(rackDBData)
-    renderCollection(storageDBData)
-    renderCollection(accessoryDBData)
-}
-
-// const setCurrentUser = (userObj) => {
-//     currentUser = userObj
-// }
-
-//Event Listeners
-window.addEventListener('load', async (event) => {
-    event.preventDefault()
-    console.log("Loading")
-    
+const refreshDBData = async () => {
     let userDB = await axios.get(`http://localhost:3001/users`)
     let buildDB = await axios.get(`http://localhost:3001/builds`)
     let accessoryDB = await axios.get(`http://localhost:3001/accessories`)
@@ -82,22 +25,199 @@ window.addEventListener('load', async (event) => {
 
     // console.log(bikeDB)
     // console.log(userDB)
-    userDBData = ["User",...userDB.data]
-    buildDBData = ["Build",...buildDB.data]
-    accessoryDBData = ["Accessory",...accessoryDB.data]
-    bikeDBData = ["Bike",...bikeDB.data]
-    rackDBData = ["Rack",...rackDB.data]
-    seatDBData = ["Seat",...seatDB.data]
-    storageDBData = ["Storage",...storageDB.data]
-    trailerDBData = ["Trailer",...trailerDB.data]
+    userDBData = userDB.data
+    buildDBData = buildDB.data
+    accessoryDBData = accessoryDB.data
+    bikeDBData = bikeDB.data
+    rackDBData = rackDB.data
+    seatDBData = seatDB.data
+    storageDBData = storageDB.data
+    trailerDBData = trailerDB.data
+}
 
-    // currentUser = userDBData[0]
-    // console.log(currentUser)
+const clearPartsHTML = () => {
+    let partViewer = document.querySelector('#parts-results')
+    // console.log(partViewer)
+
+    partViewer.innerHTML = ""
+}
+
+const renderPartsCollection = (collectionObjKey, collectionDBData) => {
+    
+    let collectionDisplayName = new String()
+    let collectionURLName = new String()
+    
+    switch(collectionObjKey){
+        case "accessoryDBData": {
+            collectionDisplayName = "Accessory"
+            collectionURLName = "accessories"
+        } break;
+
+        case "bikeDBData": {
+            collectionDisplayName = "Bike" 
+            collectionURLName = "bikes"
+        } break;
+
+        case "rackDBData": {
+            collectionDisplayName = "Rack"
+            collectionURLName = "racks"
+        } break;
+
+        case "seatDBData": {
+            collectionDisplayName = "Seat"
+            collectionURLName = "seats"
+        } break;
+
+        case "storageDBData": {
+            collectionDisplayName = "Storage"
+            collectionURLName = "storages"
+        } break;
+
+        case "trailerDBData": {
+            collectionDisplayName = "Trailer"
+            collectionURLName = "trailers"
+        } break;
+
+    }
+    
+    collectionDBData.forEach(doc => {
+        let htmlString = newPartHTML(collectionDisplayName, collectionURLName, doc)
+        let partViewer = document.querySelector('#parts-results')
+        partViewer.innerHTML += htmlString
+    });
+}
+
+const renderAllPartsAndListeners = () => {
+    renderPartsCollection(Object.keys({bikeDBData})[0],bikeDBData)
+    renderPartsCollection(Object.keys({seatDBData})[0],seatDBData)
+    renderPartsCollection(Object.keys({trailerDBData})[0],trailerDBData)
+    renderPartsCollection(Object.keys({rackDBData})[0],rackDBData)
+    renderPartsCollection(Object.keys({storageDBData})[0],storageDBData)
+    renderPartsCollection(Object.keys({accessoryDBData})[0],accessoryDBData)
+    
+    setHeartsListeners()
+}
+
+const setCurrentUser = (userObj) => {
+    currentUser = userObj
+}
+
+// const setAddToBuildBtnsListeners = () {
+//     addToBuildBtns = document.querySelectorAll("#add-to-cart")
+// }
+
+const newPartHTML = (collectionDisplayName, collectionURLName, docData) => {
+    let brand = docData.brand
+    let model = docData.model
+    let urlPic = docData.urlPic
+    let id = docData._id
+    let likePic = new String()
+    if (docData.likedByUsers.includes(currentUser._id)) {
+        likePic = `../../assets/Heart_icon_red_filled.png`
+    } else {
+        likePic = `../../assets/Heart_icon_red_hollow.png`
+    }
+    let likeCount = docData.likedByUsers.length
+
+    let htmlString = `<div class="part-item" collection-name="${collectionDisplayName}" db-collection-url-name="${collectionURLName}" db-doc-id="${id}">
+    <div class="part-sub-item" id="collection">~${collectionDisplayName}~</div>
+    <div class="part-sub-item" id="brand">${brand}</div>
+    <div class="part-sub-item" id="model">${model}</div>
+    <div class="part-sub-item" id="picture">
+        <img src="${urlPic}">
+    </div>
+    <div class="part-sub-item" id="like">
+        <img src="${likePic}">
+        <div id="part-like-counter">${likeCount}</div>
+    </div>
+    <div class="part-sub-item" id="add-to-cart">
+            <a href="#">Add to Build Cart</a>
+    </div>
+    </div>`
+
+    return htmlString
+}
+
+const updatePartHTML = async (collectionName, collectionURLName, docID) => {
+    console.log("updating part")
+    let collectionDisplayName = collectionName.charAt(0).toUpperCase() + collectionName.slice(1);
+
+    let doc = await axios.get(`http://localhost:3001/${collectionURLName}/${docID}`)
+    let docData = doc.data
+    console.log(docData)
+    let likePic = new String()
+    if (docData.likedByUsers.includes(currentUser._id)) {
+        likePic = `../../assets/Heart_icon_red_filled.png`
+    } else {
+        likePic = `../../assets/Heart_icon_red_hollow.png`
+    }
+    let likeCount = docData.likedByUsers.length
+
+    let HTMLPart = document.querySelector(`[db-collection-url-name="${collectionURLName}"][db-doc-id="${docID}"]`)
+
+    HTMLPart.innerHTML = `<div class="part-sub-item" id="collection">~${collectionDisplayName}~</div>
+        <div class="part-sub-item" id="brand">${docData.brand}</div>
+        <div class="part-sub-item" id="model">${docData.model}</div>
+        <div class="part-sub-item" id="picture">
+            <img src="${docData.urlPic}">
+        </div>
+        <div class="part-sub-item" id="like">
+            <img src="${likePic}">
+            <div id="part-like-counter">${likeCount}</div>
+        </div>
+        <div class="part-sub-item" id="add-to-cart">
+                <a href="#">Add to Build Cart</a>
+        </div>
+    </div>`
+}
 
 
-    // setCurrentUser(currentUser)
-    console.log(currentUser)
-    renderAllParts()
+const setHeartsListeners = () => {
+    heartBtns = document.querySelectorAll("#like>img")
+    console.log(heartBtns)
+    heartBtns.forEach((heart) => {
+        heart.addEventListener('click', async () => {
+            // Find part in HTML
+            let parentPart = heart.parentElement.parentElement
+            let partCollectionURL = parentPart.getAttribute("db-collection-url-name")
+            let collectionName = parentPart.getAttribute("collection-name")
+            let partID = parentPart.getAttribute("db-doc-id")
+            
+            //Get Part
+            let partObj = await axios.get(`http://localhost:3001/${partCollectionURL}/${partID}`)
+            let objData = partObj.data
+            
+            //Update part
+            if (objData.likedByUsers.includes(currentUser._id)) {
+                //update DB, remove user
+                await axios.put(`http://localhost:3001/${partCollectionURL}/remove-user-like/${partID}/${currentUser._id}`)
+                
 
+            } else {
+                //update DB, add user
+                await axios.put(`http://localhost:3001/${partCollectionURL}/add-user-like/${partID}/${currentUser._id}`)
+                console.log(collectionName, partCollectionURL, partID)
+
+            }
+            console.log(collectionName, partCollectionURL, partID)
+            // await updatePartHTML(collectionName, partCollectionURL, partID)
+        })
+    })
+}
+
+
+//Upon load
+window.addEventListener('load', async (event) => {
+    event.preventDefault()
+    console.log("Loading")
+    
+    await refreshDBData()
+    setCurrentUser(userDBData[0])
+    renderAllPartsAndListeners()
 })
 
+
+
+// <div class="part" collection="bikes" dbID="">
+
+// document.querySelectorAll(`div[collection="bikes"]`)

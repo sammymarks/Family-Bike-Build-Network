@@ -286,35 +286,35 @@ html {
         align-items: center;
     }
 
-    .part-item #collection {
+    .part-item>#collection {
         grid-area: collection;
     }
 
-    .part-item #brand {
+    .part-item>#brand {
         grid-area: brand;
         font-size: 2rem;
 
     }
 
-    .part-item #model {
+    .part-item>#model {
         grid-area: model;
         font-size: 2rem;
         font-weight: bold;
     }
 
-    .part-item #picture {
+    .part-item>#picture {
         grid-area: picture;
         max-height: 177px;
     }
 
-    .part-item #picture img {
+    .part-item>#picture img {
         max-height: 177px;
         max-width: 100%;
         padding: 10px;
         border-radius: 3px 3px 3px 3px;
     }
 
-    .part-item #like {
+    .part-item>#like {
         grid-area: like;
         display: grid;
         grid-template-columns: 50% 50%;
