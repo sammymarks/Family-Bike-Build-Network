@@ -223,7 +223,7 @@ html {
         text-align:center
     }
 
-    #add-part-modal {
+    .add-part-modal {
         background-color: rgba(0,0,0,0.4);
         position: fixed;
         top: 0;
@@ -232,7 +232,11 @@ html {
         width: 100%;
         z-index: 100;
         overflow: auto;
-        display: block;
+        display: none;
+    }
+
+    #bike-modal {
+        display: none;
     }
 
     #add-part-modal-form {
