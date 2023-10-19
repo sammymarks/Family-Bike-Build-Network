@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Parts</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="../scripts/add-part-script.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,300;0,600;1,200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container" id="index-page-container">
+        <div class="content-wrap" id="index-content-wrap">
+
+            <header>
+                <nav class="nav-bar">
+                    <a href="../index.html" class="nav-logo"><span class="first">F</span>amily <span class="first">B</span>ike <span class="first">B</span>uild <span class="first">N</span>etwork</a>
+                    <ul class="nav-menu">
+                        <li class="nav-items"><a href="./community-builds.html" class="nav-link" id="builds">Community Builds</a></li>
+                        <li class="nav-items"><a href="./community-parts.html" class="nav-link" id="parts">Community Parts</a></li>
+                        <li class="nav-items"><a href="./create-a-build.html" class="nav-link" id="create-build">Create Build</a></li>
+                        <li class="nav-items"><a href="./add-parts.html" class="nav-link" id="add-part">Add Parts</a></li>
+                    </ul>
+                    <a href="./profile.html" class="nav-profile">Profile</a>
+                    <!-- <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div> -->
+                </nav>
+            </header>
+            <div class="main-body" id="add-part-main-body">
+                <div class="add-part-link add-part-grid-item" id="add-part-bike"><a href="#">Add a Bike</a></div>
+                <div class="add-part-link add-part-grid-item" id="add-part-rack"><a href="#">Add a Rack</a></div>
+                <div class="add-part-link add-part-grid-item" id="add-part-trailer"><a href="#">Add a Trailer</a></div>
+                <div class="add-part-link add-part-grid-item" id="add-part-seat"><a href="#">Add a Seat</a></div>
+                <div class="add-part-link add-part-grid-item" id="add-part-storage"><a href="#">Add a Storage</a></div>
+                <div class="add-part-link add-part-grid-item" id="add-part-accessory"><a href="#">Add an Accessory</a></div>
+            </div>
+            <div class="modal" id="add-part-modal">
+                <div id="modal-textbox" collection="bike">
+                    <h1>Add a Bike</h1>
+                    <form class="add-part-modal-form" id="add-bike-form">
+                        <label for="brand">Brand (Required):</label><br>
+                        <input type="text" id="brand" name="brand"><br>
+                        <label for="model">Model (Required):</label><br>
+                        <input type="text" id="model" name="model"><br>
+                        <label for="is-electric">Electric Assist (Required):</label><br>
+                        <input type="checkbox" id="is-electric" name="is-electric"><br>
+                        <label for="category">Category (Required):</label><br>
+                        <select id="category" name="category">
+                            <option value="road">Road</option>
+                            <option value="touring-gravel">Touring/Gravel</option>
+                            <option value="hybrid-fitness">Hybrid/Fitness</option>
+                            <option value="mountain">Mountain</option>
+                            <option value="cargo-family">Cargo/Family</option>
+                        </select><br>
+                        <label for="year">Year:</label><br>
+                        <input type="text" id="year" name="year"><br>
+                        <label for="product-url">Product Link (url):</label><br>
+                        <input type="text" id="product-url" name="product-url"><br>
+                        <label for="product-pic-url">Product Image (url):</label><br>
+                        <input type="text" id="product-pic-url" name="product-pic-url"><br>
+                        <label for="frame">Frame Materials:</label><br>
+                        <input type="text" id="frame" name="frame"><br>
+                        <label for="other-notes">Other Notes:</label><br>
+                        <textarea id="other-notes" name="other-notes" rows="3" cols="40"></textarea><br>
+                        <input type="submit" value="Submit">
+                    </form><br>
+                    <button id="close-add-part-modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-container"> © Sammy Marks 2023
+                <!-- <ul id="footer-list">
+                    <li id="footer-text"> © Sammy Marks 2023</li>
+                </ul> -->
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
