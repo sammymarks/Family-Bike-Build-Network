@@ -92,7 +92,7 @@ This application has 3 major relationship types and 8 collections:
 - Repeatable approach - also used for Community Builds
 
 ![Render All Parts](./assets/RenderAllPArts.png)
-![Render Part HTML](image.png)
+![Render Part HTML](./assets/RenderParts.png)
 
 #### Like Buttons that toggle
 - ".parentElement" to access parent div data (e.g., DB ID embedded in part container)
@@ -111,12 +111,7 @@ This application has 3 major relationship types and 8 collections:
 #### Submit Part Form
 I got it to work!
 
-#### Other Code Tidbits
-- 
-
 ![Submit Part](./assets/SubmitBike.png)
-
-
 
 ## Links
 - Entity Relationship Diagram (ERD) - https://lucid.app/lucidchart/ea347656-cb9a-4fc7-89a6-68f42a5ed6c8/edit?view_items=ycsD_re2YN0G&invitationId=inv_487a8e67-1008-42ec-a90f-84b79b1155f8
@@ -135,7 +130,7 @@ I got it to work!
 
 # Reflection
 
-**What went well?**
+## **What went well?**
 - Planning paid off - minimal deviation from wireframe and ERD completed in the first day of the project
 - DB and back-end implementation went smoothly, as designed
 - Much quicker on setting up front-end template/styling, including Grid
@@ -145,11 +140,13 @@ I got it to work!
     - In MongoDB schemas, empty Strings default to `""` (which is a valid string) while empty Numbers default to `null`(which is not a valid number and has to be treated with conditionals on the script).
 - Towards the end of the week, I was comfortable enough with my code to build the Add Parts functionality and UI (and learn forms) from scratch in one afternoon.
 
-**Different for next time**
+## **Different for next time**
 - Need to better plan breaks in my day. I was inefficient in debugging for longer stretches than I wanted.
-- Need to get better at [MVP vs SLC](https://www.bluent.net/blog/mvp-vs-slc/#:~:text=Viable%20vs.,-Lovable&text=SLC's%20'Lovable'%20concept%20calls%20for,use%20or%20interest%20with%20it.). What is "good enough" from a functionality standpoint is not necessarily the minumum of what the user wants.
 - There was a lot of copy/paste repetition on the 6 Part collections. I should have trimmed down Part collections and repurposed time for more/different functionality.
-- I spent too much time battling against the limitations of vanilla JS. I wish I had explore authentication instead of the Like buttons.
+- I spent too much time battling against the limitations of vanilla JS. I wish I had explored user authentication or filter/search instead of the Like buttons.
+- For future exploration - Could/should I created a single "Part" schema with all of the configuration on the front end? The backend is highly repetitious, and the only difference in schemas shows up in an unimplemented part detail modal.
+- Need to get better at [MVP vs SLC](https://www.bluent.net/blog/mvp-vs-slc/#:~:text=Viable%20vs.,-Lovable&text=SLC's%20'Lovable'%20concept%20calls%20for,use%20or%20interest%20with%20it.). What is "good enough" from a functionality standpoint is not necessarily the minumum of what the user wants.
+
 
 
 
