@@ -36,22 +36,23 @@ Each part has user-submitted content, including Brand, Model, Product Link, Pict
         - Editing and deleting parts and builds (content moderation)
         - Editing and deleting user data (content modaration)
 - Community Parts and Builds
-    - See pop-up Part and Build details when clicking on summary cards
+    - **(Next Release)** See pop-up Part and Build details when clicking on summary cards
     - Search and Filter by Keyword
-    - Show placeholder picture when none is available
+    - **(Next Release)** Show placeholder picture when none is available
     - Add Reviews/Ratings for Parts
-    - (Vanilla JS/HTML/CSS) Toggle HTML changes upon clicking "like" without reloading the page -> send DB query and then make manual HTML change via JS.
+    - (Vanilla JS/HTML/CSS limitation) Toggle HTML changes upon clicking "like" without reloading the page -> send DB query and then make manual HTML change via JS.
+    - Upload user pictures to DB (instead of URL links)
 - Build Cart
     -  Add part count and just part quantity (instead of duplicate parts)
-    - “Please select a part from community parts” link if cart is empty
+    - **(Next Release)** “Please select a part from community parts” link if cart is empty
     - Improved validation (e.g., must include at least 1 bike)
 - Add-Part 
-    - **(Priority)** Build out remaining 5 part collections
+    - **(Priority)** Build out remaining 5 Add Part collections
 - Homepage
     - Add "feed" of recent activities and community highlights
 - In general
     - Add responsive design elements (mobile optimized), including hampurger menus for headers
-    - Formatting and position cleanup 
+    - **(Next Release)** Formatting and position cleanup (especially related to the parts renderer)
     - Add images and accents to front-end, especially homepage and add-parts
 
 
