@@ -51,12 +51,18 @@ const showModal = () => {
     console.log("now showing")
 }
 
+const hideModal = () => {
+    bikeModal.style.display = "none"
+}
+
 
 //EVENT LISTENERS
 const addBikeBtn = document.querySelector('#add-part-bike')
 const bikeModal = document.querySelector('#bike-modal')
 const bikeForm = document.querySelector('#add-bike-form')
+const closeBikeForm = document.querySelector('#close-bike-modal')
 
 addBikeBtn.addEventListener('click', showModal)
 bikeForm.addEventListener('submit', submitBike)
+closeBikeForm.addEventListener('click', hideModal)
 

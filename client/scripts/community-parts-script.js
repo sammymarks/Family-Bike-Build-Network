@@ -210,26 +210,12 @@ const setHeartsListeners = () => {
             
             //Update part
             if (objData.likedByUsers.includes(currentUser._id)) {
-                //update DB, remove user
-                console.log(collectionName, partCollectionURL, partID)
-
                 await axios.put(`http://localhost:3001/${partCollectionURL}/remove-user-like/${partID}/${currentUser._id}`)
                 if(!alert(`${collectionName} has been un-liked`)){window.location.reload();}
-
-                // console.log(collectionName, partCollectionURL, partID)
-
             } else {
-                //update DB, add user
-                // console.log(collectionName, partCollectionURL, partID)
-
                 await axios.put(`http://localhost:3001/${partCollectionURL}/add-user-like/${partID}/${currentUser._id}`)
                 if(!alert(`${collectionName} has been liked`)){window.location.reload();}
-
-                // console.log(collectionName, partCollectionURL, partID)
             }
-            // console.log(collectionName, partCollectionURL, partID)
-            // await updatePartHTML(collectionName, partCollectionURL, partID)
-            
         })
     })
 }

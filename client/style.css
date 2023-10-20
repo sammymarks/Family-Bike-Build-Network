@@ -24,6 +24,9 @@ html {
         padding-bottom: 2.5rem;    /* Footer height */
     }
 
+    .bold {
+        font-weight: bold;
+    }
 
     /* HEADER STYLES */
     li {
@@ -72,11 +75,15 @@ html {
         padding-top: 2px;
         padding-bottom: 2px;
     }
-
+    
     .nav-menu {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .nav-items {
+        padding: 5px 15px;
     }
 
     /* ALL PAGES SYLES */
@@ -196,14 +203,18 @@ html {
 
     #index-find-builds {
         grid-area: builds;
+        max-height: 100px;
     }
 
     #index-find-parts {
         grid-area: parts;
+        max-height: 100px;
+
     }
 
     #index-my-profile {
         grid-area: profile;
+        max-height: 100px;
     }
 
     /* ADD PARTS MAIN BODY */
