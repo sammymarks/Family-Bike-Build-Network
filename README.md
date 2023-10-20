@@ -53,10 +53,13 @@ Each part has user-submitted content, including Brand, Model, Product Link, Pict
 - In general
     - Add responsive design elements (mobile optimized), including hampurger menus for headers
     - **(Next Release)** Formatting and position cleanup (especially related to the parts renderer)
+    - **(Next Release)** Better UX for reloading page to refresh content (rather than Alerts)
     - Add images and accents to front-end, especially homepage and add-parts
 
 
 # Technical Notes
+
+
 
 ## Wireframe
 
@@ -67,7 +70,7 @@ The wireframe was used for three parallel purposes:
 
 ![wireframe](./assets/wireframe.png)
 
-## Entity Relationship Diagram (ERD)
+## Entity Relationship Diagram (ERD) and Database Setup
 
 This application has 3 major relationship types and 8 collections:
 1. **Users** hold buildCarts consisting of **Parts**
@@ -81,6 +84,12 @@ This application has 3 major relationship types and 8 collections:
 4. Racks
 5. Storage
 6. Accessories
+
+**Note on Sibling Relationships**
+As a workaround to the implied parentless/sibling relationship between Users and Parts, Users are seeded without parts initially. Parts are only added Users once the User has been created and the site is live.
+
+![UserSeed](./assets/UserSeed.png)
+![UserSchema](./assets/UserSchema.png)
 
 **Entity Relationship Diagram Snippet**
 ![Entity Relationship Diagram](./assets/ERD.png)
@@ -114,6 +123,9 @@ I got it to work!
 
 ![Submit Part](./assets/SubmitBike.png)
 
+#### Approach for Seeding
+- As a workaround for the "sibling" issue between Users and Parts, I 
+
 ## Links
 - Entity Relationship Diagram (ERD) - https://lucid.app/lucidchart/ea347656-cb9a-4fc7-89a6-68f42a5ed6c8/edit?view_items=ycsD_re2YN0G&invitationId=inv_487a8e67-1008-42ec-a90f-84b79b1155f8
 - Wireframes - https://www.figma.com/file/vkIyKUn0qOH81tWso0Tio6/Family-Bike-Builder-Network?type=whiteboard&node-id=0%3A1&t=CvdrRYbafAFo8OXs-1
@@ -121,6 +133,13 @@ I got it to work!
 
 ## Sources and Attribution
 <!-- - Header Clipart - https://www.freepik.com/premium-vector/colorful-illustration-cartoon-bike-trailers-kids_13504215.htm -->
+- Packages/Installers
+    - npm
+    - node
+    - Express
+    - Mongoose(MongoDB)
+    - Cors
+    - Logger
 - Color Palette - https://paletton.com/#uid=53L0u0kllllaFw0g0qFqFg0w0aF
 - Filter HTML/CSS - https://codepen.io/edlinkiii/pen/XWPrweQ
 - Search Bar HTML/CSS - https://codepen.io/huange/pen/bGqMqM
@@ -133,7 +152,8 @@ I got it to work!
 
 ## **What went well?**
 - Planning paid off - minimal deviation from wireframe and ERD completed in the first day of the project
-- DB and back-end implementation went smoothly, as designed
+- DB and back-end implementation went smoothly, worked as designed
+- Used ChatGPT to help build out backend
 - Much quicker on setting up front-end template/styling, including Grid
 - Learned some cool coding tidbits, including:
     - Use a single "Model.create()" method instead of "new Model()" -> "Model.save()"
@@ -145,9 +165,10 @@ I got it to work!
 - Need to better plan breaks in my day. I was inefficient in debugging for longer stretches than I wanted.
 - There was a lot of copy/paste repetition on the 6 Part collections. I should have trimmed down Part collections and repurposed time for more/different functionality.
 - I spent too much time battling against the limitations of vanilla JS. I wish I had explored user authentication or filter/search instead of the Like buttons.
+- On that note - I had the UX of the alert reloading the page. I want that reload and refresh to feel much cleaner.
 - For future exploration - Could/should I created a single "Part" schema with all of the configuration on the front end? The backend is highly repetitious, and the only difference in schemas shows up in an unimplemented part detail modal.
 - Need to get better at [MVP vs SLC](https://www.bluent.net/blog/mvp-vs-slc/#:~:text=Viable%20vs.,-Lovable&text=SLC's%20'Lovable'%20concept%20calls%20for,use%20or%20interest%20with%20it.). What is "good enough" from a functionality standpoint is not necessarily the minumum of what the user wants.
 
-
-
+Lots of copy/paste in the server:
+![ServerJS Screenshot](./assets/serverjs%20sreenshot.png)
 
