@@ -123,10 +123,7 @@ I got it to work!
 
 ![Submit Part](./assets/SubmitBike.png)
 
-#### Approach for Seeding
-- As a workaround for the "sibling" issue between Users and Parts, I 
-
-## Links
+## Project Links
 - Entity Relationship Diagram (ERD) - https://lucid.app/lucidchart/ea347656-cb9a-4fc7-89a6-68f42a5ed6c8/edit?view_items=ycsD_re2YN0G&invitationId=inv_487a8e67-1008-42ec-a90f-84b79b1155f8
 - Wireframes - https://www.figma.com/file/vkIyKUn0qOH81tWso0Tio6/Family-Bike-Builder-Network?type=whiteboard&node-id=0%3A1&t=CvdrRYbafAFo8OXs-1
 - Requirements, Build Plans, Seed Psuedo Code, and Detailed Backlog - https://docs.google.com/document/d/1gkzndnmorJpVkG3G0X_7Rga1NVe13QmK1Iljots7O4w/edit?usp=sharing
@@ -143,7 +140,7 @@ I got it to work!
 - Color Palette - https://paletton.com/#uid=53L0u0kllllaFw0g0qFqFg0w0aF
 - Filter HTML/CSS - https://codepen.io/edlinkiii/pen/XWPrweQ
 - Search Bar HTML/CSS - https://codepen.io/huange/pen/bGqMqM
-- Nav-Bar HTML and Styling - [Darcy Struble](https://github.com/darcystruble)
+- Nav-Bar HTML and Styling, Paired Debugging - [Darcy Struble](https://github.com/darcystruble)
 - Form Submission Example - [Billy Rogers](https://github.com/williamrogerschi)
 - Thanks to the SEIR 0911 social room and instructors for a wide range of aesthetic and debugging input!
 
