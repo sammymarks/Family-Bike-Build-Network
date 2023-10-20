@@ -152,6 +152,7 @@ I got it to work!
 - DB and back-end implementation went smoothly, worked as designed
 - Used ChatGPT to help build out backend
 - Much quicker on setting up front-end template/styling, including Grid
+- Less than 80% js - my code is more efficient!
 - Learned some cool coding tidbits, including:
     - Use a single "Model.create()" method instead of "new Model()" -> "Model.save()"
     - All DB queries/controllers require "res.send()" even if the output is not returned to the front end. Otherwise the query will never resolve!
