@@ -2,6 +2,10 @@
 
 This app will allow families who want to schlep their kids on bikes get inspiration for builds and parts to make the journey on any budget. It will feature community builds and user-submitted bikes and parts. Mongo/Mongoose/Express/Node, vanilla JS/HTML/CSS
 
+Additional Documentation:
+- [Wireframe](https://www.figma.com/file/vkIyKUn0qOH81tWso0Tio6/Family-Bike-Builder-Network?type=whiteboard&node-id=0%3A1&t=DS6Z4owOlCaJYkWV-1)
+- [Entity Relationship Diagram](https://lucid.app/lucidchart/ea347656-cb9a-4fc7-89a6-68f42a5ed6c8/edit?page=0_0#)
+
 # Functionality
 
 ## Overview
